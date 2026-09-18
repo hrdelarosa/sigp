@@ -1,0 +1,19 @@
+---
+description: Canonical SIGP repository rules
+alwaysApply: true
+---
+
+# SIGP repository rules
+
+Read and follow `AGENTS.md` before changing this repository. Use
+`docs/README.md` to locate the relevant architecture, domain and development
+documentation.
+
+- Keep the system a modular monolith.
+- Make the smallest change that satisfies the current requirement.
+- Do not add planned integrations or packages until code uses them.
+- Preserve employee assignment and contract history.
+- Keep backend modules and frontend features within their existing workspace
+  boundaries.
+- Never commit secrets or personal data.
+- Run `pnpm verify` after code changes.

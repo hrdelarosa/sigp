@@ -36,3 +36,9 @@ pnpm verify
 
 Las integraciones de base de datos, almacenamiento, autenticacion y despliegue
 se agregaran al comenzar a implementar los modulos que las necesiten.
+
+## Documentacion
+
+El indice tecnico y funcional se encuentra en [`docs/README.md`](docs/README.md).
+Las instrucciones para asistentes de IA estan centralizadas en
+[`AGENTS.md`](AGENTS.md).
