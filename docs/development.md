@@ -19,6 +19,16 @@ pnpm install
 a utilizarse, crea un archivo `.env` local con los valores correspondientes. No
 versiones ese archivo.
 
+El backend carga `.env` y valida las variables que ya utiliza:
+
+- `NODE_ENV`: `development`, `test` o `production`;
+- `PORT`: entero entre 1 y 65535;
+- `FRONTEND_ORIGIN`: origen HTTP o HTTPS sin ruta.
+
+En desarrollo, si no se define un archivo `.env`, se usan `development`, `3000`
+y `http://localhost:5173`. Las variables de base de datos, sesion y S3 siguen
+siendo previstas y aun no las consume el codigo.
+
 ## Ejecutar
 
 Frontend y backend simultaneamente:
@@ -53,9 +63,22 @@ pnpm verify
 `pnpm verify` ejecuta todas las comprobaciones anteriores y es el criterio local
 antes de abrir o actualizar un Pull Request.
 
-Actualmente los workspaces no contienen casos de prueba y el runner informa
-cero pruebas. Al agregar comportamiento, deben agregarse las pruebas
-correspondientes en el mismo cambio.
+Actualmente el backend usa Vitest para probar el endpoint `GET /health`, la
+configuracion de entorno y la restriccion CORS. Frontend y shared no declaran un
+runner de pruebas hasta que tengan comportamiento que verificar. Al agregar
+comportamiento, deben agregarse las pruebas correspondientes en el mismo cambio.
+
+## Integracion continua
+
+`.github/workflows/ci.yml` ejecuta en Pull Requests hacia `main` y en cambios a
+`main`:
+
+```bash
+pnpm install --frozen-lockfile
+pnpm verify
+```
+
+El workflow no utiliza secretos, bases de datos, contenedores ni despliegues.
 
 ## Flujo Git
 
