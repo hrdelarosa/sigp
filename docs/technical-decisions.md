@@ -33,6 +33,33 @@ frontera tecnica real.
 El frontend utiliza React 19, Vite y Tailwind CSS 4. Otras librerias se agregan
 con el primer caso de uso que las necesite, no como instalacion preventiva.
 
+### Configuracion validada del backend
+
+El backend usa `@nestjs/config` para cargar `.env` y validar las variables que
+consume. `NODE_ENV`, `PORT` y `FRONTEND_ORIGIN` tienen valores locales seguros
+por defecto y fallan al iniciar cuando reciben valores invalidos. Las variables
+de integraciones futuras no se validan hasta que exista codigo que las use.
+
+### Pruebas iniciales del backend
+
+Vitest, `@nestjs/testing` y Supertest cubren la aplicacion NestJS. Los
+workspaces sin comportamiento verificable no mantienen scripts de prueba vacios,
+para no dar resultados exitosos sin pruebas ejecutadas.
+
+### Lint tipado y Hooks de React
+
+ESLint usa el servicio de proyectos de TypeScript para analizar el codigo de los
+workspaces y `eslint-plugin-react-hooks` para detectar usos invalidos de Hooks.
+Los archivos de configuracion permanecen fuera del analisis tipado para evitar
+proyectos TypeScript artificiales.
+
+### Integracion continua basica
+
+GitHub Actions valida Pull Requests y cambios a `main` mediante
+`pnpm install --frozen-lockfile` y `pnpm verify`. No construye imagenes ni
+ejecuta despliegues; esos pasos se evaluaran cuando exista una version
+desplegable.
+
 ### Historial explicito
 
 La situacion laboral vive en asignaciones con vigencia. Las renovaciones son
@@ -41,7 +68,7 @@ historica por actualizaciones destructivas.
 
 ### Integraciones diferidas
 
-Drizzle/MySQL, Swagger, S3/Garage, Docker y CI/CD estan previstos, pero se
+Drizzle/MySQL, Swagger, S3/Garage, Docker y CD estan previstos, pero se
 configuraran cuando exista codigo o un flujo desplegable que permita validarlos.
 Esto evita configuracion muerta y dependencias sin uso.
 

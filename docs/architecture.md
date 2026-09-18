@@ -111,6 +111,9 @@ conecta directamente a ellos.
 ## Estado ejecutable actual
 
 - Backend: `GET /health` responde `{ "status": "ok" }`.
+- Backend: carga configuracion validada y restringe CORS a `FRONTEND_ORIGIN`.
+- Backend: Vitest y Supertest cubren salud, configuracion y CORS.
 - Frontend: pantalla inicial servida por Vite.
 - Shared: paquete TypeScript vacio preparado para contratos futuros.
+- CI: GitHub Actions ejecuta `pnpm verify` en Pull Requests y `main`.
 - Persistencia y modulos funcionales: no implementados.

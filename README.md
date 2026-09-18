@@ -28,6 +28,9 @@ pnpm build
 pnpm verify
 ```
 
+`pnpm test` ejecuta las pruebas Vitest del backend. El workflow de GitHub
+Actions ejecuta `pnpm verify` en Pull Requests y cambios a `main`.
+
 ## Workspaces
 
 - `apps/backend`: API NestJS.
